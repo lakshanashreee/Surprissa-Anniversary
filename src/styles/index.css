@@ -272,10 +272,165 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Focus States for Accessibility */
+/* Focus States for Accessibility */
 :focus-visible {
   outline: 3px solid var(--color-peach-primary);
   outline-offset: 4px;
   border-radius: 4px;
+}
+
+/* Floating Decorative Stickers (Visible on Desktop / Tablets, Hidden on Phones to eliminate overlapping) */
+.floating-decor-sticker {
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .floating-decor-sticker {
+    display: none !important;
+  }
+}
+
+/* Responsive Metric Grid in Layer 1 */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+@media (max-width: 768px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .metrics-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}
+
+/* Layer 2: Fully Responsive Sacred Timeline */
+.sacred-timeline-container {
+  position: relative;
+  padding: 24px 0 36px;
+  margin-bottom: 32px;
+  width: 100%;
+}
+
+.sacred-timeline-spine {
+  position: absolute;
+  top: 10px;
+  bottom: 20px;
+  width: 4px;
+  background: linear-gradient(to bottom, #FFD9C2 0%, rgba(255, 217, 194, 0.8) 50%, #FFD9C2 100%);
+  box-shadow: 0 0 16px rgba(255, 217, 194, 0.7);
+  border-radius: 4px;
+  z-index: 1;
+}
+
+.sacred-timeline-node {
+  position: absolute;
+  top: 50%;
+  border-radius: 50%;
+  border: 3px solid #FFD9C2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  transition: all 0.3s ease;
+}
+
+/* Desktop layout (>= 768px): Centered spine, cards hug the center line */
+@media (min-width: 768px) {
+  .sacred-timeline-spine {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .sacred-timeline-item {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Even cards: in the left half, right-aligned to hug the center line */
+  .sacred-timeline-item.even {
+    justify-content: flex-end;
+    padding-right: calc(50% + 28px);
+    padding-left: 0;
+  }
+
+  /* Odd cards: in the right half, left-aligned to hug the center line */
+  .sacred-timeline-item.odd {
+    justify-content: flex-start;
+    padding-left: calc(50% + 28px);
+    padding-right: 0;
+  }
+
+  .sacred-timeline-node {
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .sacred-timeline-card {
+    width: 100%;
+    max-width: 360px;
+    text-align: center;
+  }
+}
+
+/* Mobile layout (< 768px): Left spine, full-width cards on the right */
+@media (max-width: 767px) {
+  .sacred-timeline-container {
+    padding: 16px 0 24px;
+    margin-bottom: 24px;
+  }
+
+  .sacred-timeline-spine {
+    left: 18px;
+    transform: none;
+  }
+
+  .sacred-timeline-item {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    width: 100% !important;
+    padding-left: 44px !important;
+    padding-right: 0 !important;
+    position: relative !important;
+    z-index: 2 !important;
+  }
+
+  .sacred-timeline-node {
+    left: 18px !important;
+    transform: translate(-50%, -50%) !important;
+  }
+
+  .sacred-timeline-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px 16px !important;
+    text-align: center;
+  }
+
+  .sacred-timeline-card h4 {
+    font-size: 1.15rem !important;
+  }
+
+  .sacred-timeline-card p {
+    font-size: 1.25rem !important;
+  }
 }
 
 /* Responsive Mobile & Touch Optimizations */

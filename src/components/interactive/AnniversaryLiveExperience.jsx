@@ -391,7 +391,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
       flexDirection: 'column',
       justifyContent: 'center',
       alignItems: 'center',
-      padding: 'clamp(16px, 4vw, 40px)',
+      padding: 'clamp(14px, 3vw, 40px) clamp(12px, 2.5vw, 24px)',
       overflowX: 'hidden'
     }}>
 
@@ -446,20 +446,20 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
         </div>
       )}
 
-      {/* Floating Transparent Flower & Mascot Stickers */}
-      <div style={{ position: 'absolute', top: '15px', left: '15px', width: 'clamp(65px, 10vw, 115px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float">
+      {/* Floating Transparent Flower & Mascot Stickers (Visible on Laptops/Desktops, hidden on Phones to eliminate overlapping) */}
+      <div style={{ top: '15px', left: '15px', width: 'clamp(65px, 10vw, 115px)' }} className="floating-decor-sticker animate-float">
         <img src="/assets/flowers/Pink flower.png" alt="Flower Decor" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
       </div>
 
-      <div style={{ position: 'absolute', top: '15px', right: '15px', width: 'clamp(70px, 11vw, 125px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float-delayed">
+      <div style={{ top: '15px', right: '15px', width: 'clamp(70px, 11vw, 125px)' }} className="floating-decor-sticker animate-float-delayed">
         <img src="/assets/flowers/blue-anemone-flower.png" alt="Flower Decor" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
       </div>
 
-      <div style={{ position: 'absolute', bottom: '15px', left: '15px', width: 'clamp(75px, 12vw, 130px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float-delayed">
+      <div style={{ bottom: '15px', left: '15px', width: 'clamp(75px, 12vw, 130px)' }} className="floating-decor-sticker animate-float-delayed">
         <img src="/assets/cat/catwiththreebouquet.png" alt="Cat Mascot" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
       </div>
 
-      <div style={{ position: 'absolute', bottom: '15px', right: '15px', width: 'clamp(65px, 10vw, 110px)', pointerEvents: 'none', zIndex: 2, opacity: 0.9 }} className="animate-float">
+      <div style={{ bottom: '15px', right: '15px', width: 'clamp(65px, 10vw, 110px)' }} className="floating-decor-sticker animate-float">
         <img src="/assets/stickers/cutestwithbouquet.png" alt="Cute Sticker" style={{ width: '100%', height: 'auto', objectFit: 'contain', filter: 'drop-shadow(0 8px 20px rgba(0,0,0,0.35))' }} />
       </div>
 
@@ -513,15 +513,10 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
             boxShadow: 'var(--shadow-glow)',
             marginBottom: '26px'
           }}>
-            <div style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(135px, 1fr))',
-              gap: '16px',
-              marginBottom: '28px'
-            }}>
+            <div className="metrics-grid">
               {/* 1. Days */}
               <div style={{
-                padding: '22px 14px',
+                padding: 'clamp(14px, 2.5vw, 22px) clamp(8px, 1.8vw, 14px)',
                 borderRadius: '18px',
                 backgroundColor: 'rgba(0,0,0,0.38)',
                 border: '1px solid rgba(255, 217, 194, 0.28)',
@@ -530,7 +525,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               }}>
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
-                  fontSize: 'clamp(1.75rem, 3.2vw, 2.3rem)',
+                  fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)',
                   fontWeight: 800,
                   color: 'var(--color-peach-primary)',
                   letterSpacing: '-0.02em',
@@ -546,7 +541,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
 
               {/* 2. Hours */}
               <div style={{
-                padding: '22px 14px',
+                padding: 'clamp(14px, 2.5vw, 22px) clamp(8px, 1.8vw, 14px)',
                 borderRadius: '18px',
                 backgroundColor: 'rgba(0,0,0,0.38)',
                 border: '1px solid rgba(255, 217, 194, 0.28)',
@@ -555,7 +550,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               }}>
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
-                  fontSize: 'clamp(1.75rem, 3.2vw, 2.3rem)',
+                  fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)',
                   fontWeight: 800,
                   color: 'var(--color-peach-primary)',
                   letterSpacing: '-0.02em',
@@ -571,7 +566,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
 
               {/* 3. Minutes */}
               <div style={{
-                padding: '22px 14px',
+                padding: 'clamp(14px, 2.5vw, 22px) clamp(8px, 1.8vw, 14px)',
                 borderRadius: '18px',
                 backgroundColor: 'rgba(0,0,0,0.38)',
                 border: '1px solid rgba(255, 217, 194, 0.28)',
@@ -580,7 +575,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               }}>
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
-                  fontSize: 'clamp(1.75rem, 3.2vw, 2.3rem)',
+                  fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)',
                   fontWeight: 800,
                   color: 'var(--color-peach-primary)',
                   letterSpacing: '-0.02em',
@@ -596,7 +591,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
 
               {/* 4. Heartbeats */}
               <div style={{
-                padding: '22px 14px',
+                padding: 'clamp(14px, 2.5vw, 22px) clamp(8px, 1.8vw, 14px)',
                 borderRadius: '18px',
                 backgroundColor: 'rgba(0,0,0,0.38)',
                 border: '1px solid rgba(255, 217, 194, 0.28)',
@@ -605,7 +600,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               }}>
                 <div style={{
                   fontFamily: "'Plus Jakarta Sans', 'Inter', system-ui, sans-serif",
-                  fontSize: 'clamp(1.75rem, 3.2vw, 2.3rem)',
+                  fontSize: 'clamp(1.5rem, 3.2vw, 2.3rem)',
                   fontWeight: 800,
                   color: 'var(--color-peach-primary)',
                   letterSpacing: '-0.02em',
@@ -694,27 +689,12 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
           </p>
 
           {/* CONTINUOUS VERTICAL LINE TIMELINE CONTAINER */}
-          <div style={{
-            position: 'relative',
-            padding: '24px 0 36px',
-            marginBottom: '32px'
-          }}>
-            {/* The Central Glowing Vertical Line */}
-            <div style={{
-              position: 'absolute',
-              top: '10px',
-              bottom: '20px',
-              left: 'clamp(24px, 50%, 50%)',
-              transform: 'translateX(-50%)',
-              width: '4px',
-              background: 'linear-gradient(to bottom, #FFD9C2 0%, rgba(255, 217, 194, 0.8) 50%, #FFD9C2 100%)',
-              boxShadow: '0 0 16px rgba(255, 217, 194, 0.7)',
-              borderRadius: '4px',
-              zIndex: 1
-            }} />
+          <div className="sacred-timeline-container">
+            {/* The Central / Left Glowing Vertical Line */}
+            <div className="sacred-timeline-spine" />
 
             {/* Vertical Milestone Nodes Along the Line */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
               {verticalMilestones.map((item, idx) => {
                 const isEven = idx % 2 === 0;
                 const isSelected = activeTimelineNode === item.id;
@@ -725,70 +705,55 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: idx * 0.12 }}
-                    style={{
-                      position: 'relative',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: isEven ? 'flex-start' : 'flex-end',
-                      width: '100%',
-                      zIndex: 2,
-                      paddingLeft: isEven ? '0' : 'clamp(0px, 4vw, 20px)',
-                      paddingRight: isEven ? 'clamp(0px, 4vw, 20px)' : '0'
-                    }}
+                    className={`sacred-timeline-item ${isEven ? 'even' : 'odd'}`}
                   >
-                    {/* Glowing Node Marker ON the Central Line */}
+                    {/* Glowing Node Marker ON the Line */}
                     <div
                       onClick={() => { playPop(); setActiveTimelineNode(item.id); }}
+                      className="sacred-timeline-node"
                       style={{
-                        position: 'absolute',
-                        left: 'clamp(24px, 50%, 50%)',
-                        top: '50%',
-                        transform: 'translate(-50%, -50%)',
-                        width: isSelected ? '30px' : '22px',
-                        height: isSelected ? '30px' : '22px',
-                        borderRadius: '50%',
+                        width: isSelected ? '28px' : '20px',
+                        height: isSelected ? '28px' : '20px',
                         backgroundColor: isSelected ? '#FFD9C2' : '#8D0B0B',
-                        border: '3px solid #FFD9C2',
-                        boxShadow: isSelected ? '0 0 20px #FFD9C2' : '0 0 10px rgba(255, 217, 194, 0.5)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer',
-                        zIndex: 4,
-                        transition: 'all 0.3s ease'
+                        boxShadow: isSelected ? '0 0 20px #FFD9C2' : '0 0 10px rgba(255, 217, 194, 0.5)'
                       }}
                     >
-                      <div style={{ width: '8px', height: '8px', borderRadius: '50%', backgroundColor: isSelected ? '#8D0B0B' : '#FFD9C2' }} />
+                      <div style={{ width: '7px', height: '7px', borderRadius: '50%', backgroundColor: isSelected ? '#8D0B0B' : '#FFD9C2' }} />
                     </div>
 
                     {/* Milestone Card */}
                     <motion.div
                       onClick={() => { playPop(); setActiveTimelineNode(item.id); }}
-                      whileHover={{ scale: 1.02 }}
+                      whileHover={{ scale: 1.03 }}
+                      className="sacred-timeline-card"
                       style={{
-                        width: 'clamp(270px, 44%, 350px)',
                         backgroundColor: 'var(--color-burgundy-primary)',
                         border: isSelected ? '2px solid var(--color-peach-primary)' : '1.5px solid rgba(255, 217, 194, 0.4)',
-                        borderRadius: '22px',
-                        padding: '22px 20px',
-                        boxShadow: isSelected ? '0 12px 35px rgba(255, 217, 194, 0.3)' : '0 8px 24px rgba(0,0,0,0.5)',
-                        textAlign: 'left',
+                        borderRadius: '24px',
+                        padding: 'clamp(20px, 3vw, 26px) clamp(18px, 2.5vw, 24px)',
+                        boxShadow: isSelected ? '0 12px 35px rgba(255, 217, 194, 0.35)' : '0 8px 24px rgba(0,0,0,0.5)',
+                        textAlign: 'center',
                         position: 'relative',
                         cursor: 'pointer',
-                        transition: 'all 0.3s ease'
+                        transition: 'all 0.3s ease',
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center'
                       }}
                     >
-                      {/* Ribbon Tag Badge */}
+                      {/* Ribbon Tag Badge + Date: Centered */}
                       <div style={{
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'space-between',
-                        marginBottom: '10px'
+                        justifyContent: 'center',
+                        gap: '10px',
+                        marginBottom: '14px',
+                        flexWrap: 'wrap'
                       }}>
                         <span style={{
                           backgroundColor: '#2B0404',
                           color: 'var(--color-peach-primary)',
-                          padding: '4px 12px',
+                          padding: '4px 14px',
                           borderRadius: '12px',
                           fontSize: '0.75rem',
                           fontWeight: 800,
@@ -798,33 +763,49 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                         }}>
                           ✦ {item.tag}
                         </span>
-                        <span style={{ fontSize: '0.78rem', color: 'var(--color-peach-soft)', fontWeight: 600 }}>
+                        <span style={{ fontSize: '0.8rem', color: 'var(--color-peach-soft)', fontWeight: 600 }}>
                           {item.date}
                         </span>
                       </div>
 
-                      {/* Photo Thumbnail + Title */}
-                      <div style={{ display: 'flex', gap: '14px', alignItems: 'center', marginBottom: '10px' }}>
-                        <div style={{
-                          width: '56px',
-                          height: '56px',
-                          borderRadius: '14px',
-                          backgroundColor: '#FFF4EB',
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'center',
-                          flexShrink: 0,
-                          boxShadow: '0 4px 12px rgba(0,0,0,0.25)'
-                        }}>
-                          <img src={item.img} alt={item.title} style={{ maxHeight: '44px', maxWidth: '44px', objectFit: 'contain' }} />
-                        </div>
-                        <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.25rem', color: 'var(--color-peach-primary)', margin: 0, fontStyle: 'italic', lineHeight: 1.25 }}>
-                          {item.title}
-                        </h4>
+                      {/* Photo Thumbnail in the Center */}
+                      <div style={{
+                        width: '64px',
+                        height: '64px',
+                        borderRadius: '18px',
+                        backgroundColor: '#FFF4EB',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        margin: '0 auto 12px',
+                        boxShadow: '0 6px 18px rgba(0,0,0,0.35)',
+                        border: '2px solid rgba(255, 217, 194, 0.3)'
+                      }}>
+                        <img src={item.img} alt={item.title} style={{ maxHeight: '48px', maxWidth: '48px', objectFit: 'contain' }} />
                       </div>
 
-                      {/* Story Text */}
-                      <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.35rem', color: 'var(--color-ivory)', margin: 0, lineHeight: 1.4 }}>
+                      {/* Title: Centered */}
+                      <h4 style={{
+                        fontFamily: 'var(--font-serif)',
+                        fontSize: 'clamp(1.2rem, 2.2vw, 1.35rem)',
+                        color: 'var(--color-peach-primary)',
+                        margin: '0 0 8px',
+                        fontStyle: 'italic',
+                        lineHeight: 1.25,
+                        textAlign: 'center'
+                      }}>
+                        {item.title}
+                      </h4>
+
+                      {/* Story Text: Centered */}
+                      <p style={{
+                        fontFamily: 'var(--font-handwriting)',
+                        fontSize: 'clamp(1.25rem, 2.4vw, 1.45rem)',
+                        color: 'var(--color-ivory)',
+                        margin: 0,
+                        lineHeight: 1.45,
+                        textAlign: 'center'
+                      }}>
                         "{item.story}"
                       </p>
                     </motion.div>
@@ -883,16 +864,26 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
           <div style={{
             backgroundColor: '#0A0000',
             borderRadius: '28px',
-            padding: '22px 16px 18px',
+            padding: 'clamp(16px, 3.5vw, 22px) clamp(10px, 2.5vw, 16px) clamp(14px, 3vw, 18px)',
             border: '2px solid var(--color-peach-primary)',
             boxShadow: 'var(--shadow-glow)',
             marginBottom: '26px',
-            position: 'relative'
+            position: 'relative',
+            width: '100%',
+            overflow: 'hidden'
           }}>
             {/* Reel Header Info & Controls */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 12px 12px', borderBottom: '1px solid rgba(255,217,194,0.15)' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.75rem', fontWeight: 800, color: 'var(--color-peach-primary)', letterSpacing: '0.1em' }}>
-                <Camera size={15} /> KODAK PORTRA 400 • ISO 200 • 35MM
+            <div style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              padding: '0 6px 12px',
+              borderBottom: '1px solid rgba(255,217,194,0.15)',
+              gap: '8px',
+              flexWrap: 'wrap'
+            }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '6px', fontSize: 'clamp(0.68rem, 2.2vw, 0.75rem)', fontWeight: 800, color: 'var(--color-peach-primary)', letterSpacing: '0.08em' }}>
+                <Camera size={14} /> KODAK PORTRA 400 • ISO 200 • 35MM
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 {/* Manual Navigation Arrows */}
@@ -938,9 +929,9 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
             </div>
 
             {/* Sprocket Holes Top */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '14px 0 16px', opacity: 0.4 }}>
-              {[...Array(16)].map((_, i) => (
-                <div key={i} style={{ width: '12px', height: '8px', backgroundColor: '#FFF4EB', borderRadius: '2px' }} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '12px 0 14px', opacity: 0.4, gap: '4px', overflow: 'hidden' }}>
+              {[...Array(14)].map((_, i) => (
+                <div key={i} style={{ width: '12px', height: '8px', backgroundColor: '#FFF4EB', borderRadius: '2px', flexShrink: 0 }} />
               ))}
             </div>
 
@@ -967,9 +958,9 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               }}
               style={{
                 display: 'flex',
-                gap: '24px',
+                gap: 'clamp(14px, 3vw, 24px)',
                 overflowX: 'auto',
-                padding: '20px 12px 24px',
+                padding: '16px 8px 20px',
                 perspective: '1200px',
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -998,12 +989,12 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                       duration: 4.2 + (idx % 4) * 0.5,
                       ease: 'easeInOut'
                     }}
-                    whileHover={{ scale: 1.08, rotateZ: 0, rotateY: 0, y: -12 }}
+                    whileHover={{ scale: 1.06, rotateZ: 0, rotateY: 0, y: -10 }}
                     style={{
-                      flex: '0 0 clamp(200px, 26vw, 240px)',
+                      flex: '0 0 clamp(190px, 58vw, 230px)',
                       backgroundColor: '#FFF4EB',
                       color: '#2B0404',
-                      padding: '14px 14px 20px',
+                      padding: 'clamp(12px, 2.5vw, 14px) clamp(10px, 2vw, 14px) clamp(14px, 2.8vw, 18px)',
                       borderRadius: '16px',
                       boxShadow: isSelected ? '0 16px 40px rgba(255, 217, 194, 0.6)' : '0 10px 30px rgba(0,0,0,0.7)',
                       border: isSelected ? '2.5px solid #8D0B0B' : '1px solid rgba(0,0,0,0.2)',
@@ -1021,13 +1012,13 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
 
                     {/* Image Frame */}
                     <div style={{
-                      height: '145px',
+                      height: 'clamp(120px, 26vw, 145px)',
                       width: '100%',
                       backgroundColor: 'transparent',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
-                      marginBottom: '12px',
+                      marginBottom: '10px',
                       position: 'relative',
                       overflow: 'hidden'
                     }}>
@@ -1035,7 +1026,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                         src={photo.img}
                         alt={photo.title}
                         style={{
-                          maxHeight: '130px',
+                          maxHeight: '100%',
                           maxWidth: '100%',
                           objectFit: 'contain',
                           filter: 'drop-shadow(0 6px 16px rgba(0,0,0,0.28))'
@@ -1044,10 +1035,10 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                     </div>
 
                     {/* Title & Handwritten Note */}
-                    <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 800, fontSize: '0.95rem', color: '#8D0B0B', fontStyle: 'italic' }}>
+                    <div style={{ fontFamily: 'var(--font-serif)', fontWeight: 800, fontSize: 'clamp(0.88rem, 2.2vw, 0.95rem)', color: '#8D0B0B', fontStyle: 'italic', lineHeight: 1.25 }}>
                       {photo.title}
                     </div>
-                    <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.2rem', color: '#444', margin: '4px 0 8px', lineHeight: 1.3 }}>
+                    <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: 'clamp(1.05rem, 2.6vw, 1.2rem)', color: '#444', margin: '4px 0 8px', lineHeight: 1.3 }}>
                       "{photo.note}"
                     </p>
 
@@ -1074,9 +1065,9 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
             </div>
 
             {/* Sprocket Holes Bottom */}
-            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '16px 0 6px', opacity: 0.4 }}>
-              {[...Array(16)].map((_, i) => (
-                <div key={i} style={{ width: '12px', height: '8px', backgroundColor: '#FFF4EB', borderRadius: '2px' }} />
+            <div style={{ display: 'flex', justifyContent: 'space-between', margin: '14px 0 6px', opacity: 0.4, gap: '4px', overflow: 'hidden' }}>
+              {[...Array(14)].map((_, i) => (
+                <div key={i} style={{ width: '12px', height: '8px', backgroundColor: '#FFF4EB', borderRadius: '2px', flexShrink: 0 }} />
               ))}
             </div>
           </div>
@@ -1231,7 +1222,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                 {arrowStatus !== 'hit' ? (
                   <motion.div
                     animate={{
-                      x: [-130, 130, -130],
+                      x: [-95, 95, -95],
                       y: [-8, 8, -8],
                       rotate: [-6, 6, -6]
                     }}
@@ -1534,14 +1525,15 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
           <div style={{
             backgroundColor: 'var(--color-burgundy-primary)',
             borderRadius: '20px',
-            padding: '18px 24px',
+            padding: 'clamp(14px, 3vw, 18px) clamp(14px, 3vw, 24px)',
             border: '1.5px solid var(--color-peach-primary)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'space-between',
-            gap: '16px',
+            gap: '14px',
             marginBottom: '26px',
-            boxShadow: 'var(--shadow-md)'
+            boxShadow: 'var(--shadow-md)',
+            flexWrap: 'wrap'
           }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
               <button
@@ -1556,7 +1548,8 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  cursor: 'pointer'
+                  cursor: 'pointer',
+                  flexShrink: 0
                 }}
               >
                 {isPlayingSong ? <Pause size={20} /> : <Play size={20} style={{ marginLeft: '2px' }} />}
@@ -1588,7 +1581,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
             backgroundColor: '#FFF4EB',
             color: '#2B0404',
             borderRadius: '24px',
-            padding: '36px 28px',
+            padding: 'clamp(24px, 5vw, 36px) clamp(16px, 4vw, 28px)',
             border: '2px solid var(--color-peach-primary)',
             boxShadow: '0 15px 40px rgba(0,0,0,0.5)',
             textAlign: 'left',
@@ -1596,7 +1589,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
             position: 'relative'
           }}>
             {!letterUnlocked ? (
-              <div style={{ textAlign: 'center', padding: '24px 0' }}>
+              <div style={{ textAlign: 'center', padding: '20px 0' }}>
                 <motion.div
                   whileHover={{ scale: 1.08 }}
                   whileTap={{ scale: 0.94 }}
@@ -1623,7 +1616,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                   <Heart size={32} fill="#FFD9C2" />
                   <span style={{ fontSize: '0.65rem', fontWeight: 800, marginTop: '2px' }}>UNSEAL</span>
                 </motion.div>
-                <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: '1.4rem', color: '#8D0B0B', marginBottom: '6px' }}>
+                <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.2rem, 3vw, 1.4rem)', color: '#8D0B0B', marginBottom: '6px' }}>
                   Tap the Heart Wax Seal to Open Your Private Anniversary Letter
                 </h4>
                 <p style={{ fontSize: '0.82rem', color: '#8D0B0B', opacity: 0.8 }}>
@@ -1638,25 +1631,25 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1.5px solid rgba(141,11,11,0.2)', paddingBottom: '10px' }}>
-                  <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 800, fontSize: '0.92rem', color: '#8D0B0B', letterSpacing: '0.05em' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '16px', borderBottom: '1.5px solid rgba(141,11,11,0.2)', paddingBottom: '10px', flexWrap: 'wrap', gap: '6px' }}>
+                  <span style={{ fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif", fontWeight: 800, fontSize: '0.88rem', color: '#8D0B0B', letterSpacing: '0.05em' }}>
                     SACRED ANNIVERSARY LETTER ✦ UNSEALED
                   </span>
-                  <span style={{ fontSize: '0.8rem', color: '#666', fontWeight: 600 }}>
+                  <span style={{ fontSize: '0.78rem', color: '#666', fontWeight: 600 }}>
                     May 14, 2022 — Forever
                   </span>
                 </div>
 
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.75rem', lineHeight: 1.6, marginBottom: '12px', color: '#180202' }}>
+                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: 'clamp(1.35rem, 3.8vw, 1.75rem)', lineHeight: 1.5, marginBottom: '12px', color: '#180202' }}>
                   My Dearest {recipientName},
                 </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.55rem', lineHeight: 1.6, marginBottom: '14px', color: '#180202' }}>
+                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: 'clamp(1.2rem, 3.2vw, 1.55rem)', lineHeight: 1.5, marginBottom: '14px', color: '#180202' }}>
                   1,248 days ago, I had no idea that one conversation with you would change the entire trajectory of my life. Thank you for tolerating my terrible jokes, stealing all my hoodies, and making the simplest grocery run feel like a romantic comedy.
                 </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.55rem', lineHeight: 1.6, marginBottom: '16px', color: '#180202' }}>
+                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: 'clamp(1.2rem, 3.2vw, 1.55rem)', lineHeight: 1.5, marginBottom: '16px', color: '#180202' }}>
                   Here is to another 100,000 hours, a million more inside jokes, and choosing you in every single lifetime.
                 </p>
-                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: '1.65rem', fontWeight: 700, textAlign: 'right', color: '#8D0B0B' }}>
+                <p style={{ fontFamily: 'var(--font-handwriting)', fontSize: 'clamp(1.3rem, 3.5vw, 1.65rem)', fontWeight: 700, textAlign: 'right', color: '#8D0B0B' }}>
                   — Yours Forever & Always
                 </p>
               </motion.div>
@@ -1682,7 +1675,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  padding: '20px'
+                  padding: '16px'
                 }}
               >
                 <motion.div
@@ -1693,11 +1686,11 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                   style={{
                     backgroundColor: 'var(--color-burgundy-primary)',
                     borderRadius: '26px',
-                    padding: '30px 24px',
+                    padding: 'clamp(20px, 4.5vw, 30px) clamp(16px, 3.5vw, 24px)',
                     border: '2px solid var(--color-peach-primary)',
                     boxShadow: '0 20px 60px rgba(0, 0, 0, 0.8)',
                     textAlign: 'center',
-                    maxWidth: '440px',
+                    maxWidth: 'min(420px, 94vw)',
                     width: '100%',
                     position: 'relative'
                   }}
@@ -1982,7 +1975,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                 gap: '8px'
               }}
             >
-              <RotateCcw size={16} /> Replay Time Machine
+              <RotateCcw size={16} />
             </button>
 
             <MagneticButton
