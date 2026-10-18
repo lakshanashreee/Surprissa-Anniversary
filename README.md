@@ -1,16 +1,16 @@
-# React + Vite
+# Stacy's Anniversary Experience ✦ 1,248 Days of Loving You
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+An immersive, interactive anniversary website celebrating 1,248 days of love, memories, and adventures with Stacy.
 
-Currently, two official plugins are available:
+## ✨ Features
+1. **Relationship Time Machine**: Precision counter tracking days (1,248), hours (29,952), minutes (1.79M+), and heartbeats (107M+) with fast-forward memory sync.
+2. **Sacred Vertical Timeline**: Interactive continuous glowing path tracing key milestones from Day 1 to forever.
+3. **Vintage 3D Film Reel**: Rotating 35mm photo roll with auto-drift, loupe inspection, and custom photo upload capability.
+4. **Cupid's Pull-To-Aim Archery Challenge**: Pull the bowstring, lead the target, and pop the drifting balloon to trigger celebratory heart showers.
+5. **Grand Love Vault & Wax Seal Letter**: Interactive wax-sealed personal letter to Stacy with celebratory confetti and acoustic music player.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+## 🚀 Running Locally
+```bash
+npm install
+npm run dev
+```
