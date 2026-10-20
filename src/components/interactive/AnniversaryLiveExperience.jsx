@@ -155,6 +155,14 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
   const [isRainingHearts, setIsRainingHearts] = useState(false);
   const [rainingHeartsList, setRainingHeartsList] = useState([]);
   const balloonPosRef = useRef({ x: 0 });
+  const rainTimerRef = useRef(null);
+
+  // Clean up timers on unmount to prevent leaks
+  useEffect(() => {
+    return () => {
+      if (rainTimerRef.current) clearTimeout(rainTimerRef.current);
+    };
+  }, []);
 
   // Handle pull release to calculate launch angle and hit testing
   const handleArrowRelease = (e, info) => {
@@ -206,16 +214,24 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
     setIsRainingHearts(true);
     triggerConfettiCannons();
 
-    // Generate 45 raining hearts
-    const hearts = Array.from({ length: 45 }, (_, i) => ({
+    // Generate ~20 hardware-accelerated raining hearts (clean 60fps on mobile & laptop)
+    const hearts = Array.from({ length: 20 }, (_, i) => ({
       id: i,
-      x: Math.random() * 96 + 2,
-      delay: Math.random() * 2.2,
-      duration: 2.8 + Math.random() * 2.2,
-      size: 18 + Math.random() * 26,
-      color: ['#FFD9C2', '#FF4D6D', '#FFB703', '#FFF1E8', '#8D0B0B'][Math.floor(Math.random() * 5)]
+      left: Math.floor(Math.random() * 90 + 5),
+      delay: (Math.random() * 1.6).toFixed(2),
+      duration: (2.6 + Math.random() * 1.4).toFixed(2),
+      size: Math.floor(20 + Math.random() * 18),
+      driftX: Math.floor((Math.random() - 0.5) * 60),
+      rot: Math.floor((Math.random() - 0.5) * 50),
+      color: ['#FFD9C2', '#FF4D6D', '#FFB703', '#FFF1E8', '#FF758F'][i % 5]
     }));
     setRainingHeartsList(hearts);
+
+    // Auto cleanup after 4.5s single celebratory cascade (prevents memory leaks & CPU lag)
+    if (rainTimerRef.current) clearTimeout(rainTimerRef.current);
+    rainTimerRef.current = setTimeout(() => {
+      setIsRainingHearts(false);
+    }, 4500);
 
     // Auto unlock Layer 5
     setTimeout(() => {
@@ -233,22 +249,27 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
   const [isShake, setIsShake] = useState(false);
   const [letterUnlocked, setLetterUnlocked] = useState(false);
 
-  // Trigger celebratory confetti cannons
+  // Trigger celebratory confetti cannons (optimized lightweight burst for 60fps mobile)
   const triggerConfettiCannons = () => {
     try {
-      const duration = 3.5 * 1000;
-      const animationEnd = Date.now() + duration;
-      const defaults = { startVelocity: 40, spread: 360, ticks: 80, zIndex: 999999 };
-
-      const interval = setInterval(function() {
-        const timeLeft = animationEnd - Date.now();
-        if (timeLeft <= 0) {
-          return clearInterval(interval);
-        }
-        const particleCount = 60 * (timeLeft / duration);
-        confetti({ ...defaults, particleCount, origin: { x: 0.15, y: 0.55 }, colors: ['#8D0B0B', '#FFD9C2', '#FFF1E8', '#FFB703', '#FF4D6D'] });
-        confetti({ ...defaults, particleCount, origin: { x: 0.85, y: 0.55 }, colors: ['#8D0B0B', '#FFD9C2', '#FFF1E8', '#FFB703', '#FF4D6D'] });
-      }, 200);
+      confetti({
+        particleCount: 35,
+        spread: 60,
+        origin: { x: 0.18, y: 0.65 },
+        colors: ['#FFD9C2', '#FFF1E8', '#FFB703', '#FF4D6D'],
+        ticks: 100,
+        zIndex: 999999,
+        disableForReducedMotion: true
+      });
+      confetti({
+        particleCount: 35,
+        spread: 60,
+        origin: { x: 0.82, y: 0.65 },
+        colors: ['#FFD9C2', '#FFF1E8', '#FFB703', '#FF4D6D'],
+        ticks: 100,
+        zIndex: 999999,
+        disableForReducedMotion: true
+      });
     } catch (e) {}
   };
 
@@ -323,17 +344,39 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
       playSuccess();
       setPasscodeFeedback("Passcode Verified! 💖");
       try {
-        confetti({ particleCount: 120, spread: 90, origin: { y: 0.6 } });
+        confetti({
+          particleCount: 45,
+          spread: 75,
+          origin: { y: 0.6 },
+          colors: ['#FFD9C2', '#FFF1E8', '#FFB703', '#FF4D6D'],
+          zIndex: 999999
+        });
       } catch (e) {}
 
-      // Trigger falling hearts animation across screen
+      // Trigger smooth hardware-accelerated falling hearts across screen
+      const hearts = Array.from({ length: 20 }, (_, i) => ({
+        id: `unlock-${i}`,
+        left: Math.floor(Math.random() * 90 + 5),
+        delay: (Math.random() * 1.4).toFixed(2),
+        duration: (2.5 + Math.random() * 1.5).toFixed(2),
+        size: Math.floor(20 + Math.random() * 18),
+        driftX: Math.floor((Math.random() - 0.5) * 60),
+        rot: Math.floor((Math.random() - 0.5) * 50),
+        color: ['#FFD9C2', '#FF4D6D', '#FFB703', '#FFF1E8', '#FF758F'][i % 5]
+      }));
+      setRainingHeartsList(hearts);
       setIsRainingHearts(true);
+
+      if (rainTimerRef.current) clearTimeout(rainTimerRef.current);
+      rainTimerRef.current = setTimeout(() => {
+        setIsRainingHearts(false);
+      }, 4500);
 
       setTimeout(() => {
         setIsPasscodeModalOpen(false);
         setLetterUnlocked(true);
         triggerConfettiCannons();
-      }, 600);
+      }, 500);
     } else {
       playPop();
       setIsShake(true);
@@ -365,6 +408,7 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
 
   const handleReplay = () => {
     playPop();
+    if (rainTimerRef.current) clearTimeout(rainTimerRef.current);
     setCurrentLayer(1);
     setCounterProgress(0);
     setIsFastForwarding(false);
@@ -408,40 +452,24 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
         }} />
       )}
 
-      {/* Raining Hearts Shower Across Entire Screen (Triggered upon Balloon Hit) */}
+      {/* Raining Hearts Shower Across Entire Screen (Hardware Accelerated 60fps) */}
       {isRainingHearts && (
-        <div style={{
-          position: 'fixed',
-          inset: 0,
-          pointerEvents: 'none',
-          zIndex: 99999,
-          overflow: 'hidden'
-        }}>
+        <div className="falling-heart-container">
           {rainingHeartsList.map((heart) => (
-            <motion.div
+            <div
               key={heart.id}
-              initial={{ y: -60, x: `${heart.x}vw`, opacity: 0, scale: 0.5, rotate: 0 }}
-              animate={{
-                y: '105vh',
-                opacity: [0, 1, 1, 0],
-                scale: [0.5, 1.2, 1, 0.8],
-                rotate: [-25, 25, -25]
-              }}
-              transition={{
-                duration: heart.duration,
-                delay: heart.delay,
-                repeat: Infinity,
-                ease: 'linear'
-              }}
+              className="falling-heart-node"
               style={{
-                position: 'absolute',
-                top: 0,
+                left: `${heart.left}vw`,
                 color: heart.color,
-                filter: `drop-shadow(0 0 12px ${heart.color})`
+                animationDuration: `${heart.duration}s`,
+                animationDelay: `${heart.delay}s`,
+                '--drift-x': `${heart.driftX}px`,
+                '--rot': `${heart.rot}deg`
               }}
             >
               <Heart size={heart.size} fill={heart.color} />
-            </motion.div>
+            </div>
           ))}
         </div>
       )}
@@ -1564,13 +1592,15 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', gap: '4px' }}>
-              {[18, 34, 24, 40, 16, 28, 36, 20].map((h, i) => (
-                <motion.div
+            <div style={{ display: 'flex', alignItems: 'flex-end', gap: '4px', height: '28px' }}>
+              {[0, 1, 2, 3, 4, 5, 6, 7].map((i) => (
+                <div
                   key={i}
-                  animate={isPlayingSong ? { height: [h * 0.35, h, h * 0.35] } : { height: '8px' }}
-                  transition={{ repeat: Infinity, duration: 0.6 + (i % 3) * 0.2 }}
-                  style={{ width: '4px', backgroundColor: 'var(--color-peach-primary)', borderRadius: '2px' }}
+                  className={`eq-bar ${isPlayingSong ? 'is-playing' : ''}`}
+                  style={{
+                    animationDuration: `${0.45 + (i % 4) * 0.15}s`,
+                    animationDelay: `${(i * 0.08).toFixed(2)}s`
+                  }}
                 />
               ))}
             </div>
@@ -1590,36 +1620,43 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
           }}>
             {!letterUnlocked ? (
               <div style={{ textAlign: 'center', padding: '20px 0' }}>
-                <motion.div
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.94 }}
+                <button
+                  type="button"
+                  className="wax-seal-button"
                   onClick={() => {
                     playPop();
                     setIsPasscodeModalOpen(true);
                   }}
-                  style={{
-                    width: '85px',
-                    height: '85px',
-                    borderRadius: '50%',
-                    backgroundColor: '#8D0B0B',
-                    border: '3px solid #FFD9C2',
-                    boxShadow: '0 0 25px rgba(141, 11, 11, 0.6)',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    margin: '0 auto 16px',
-                    cursor: 'pointer',
-                    color: '#FFD9C2'
-                  }}
+                  title="Unseal Sacred Letter"
+                  aria-label="Unseal Sacred Letter"
                 >
+                  {/* Subtle Star Sparkle Accent */}
+                  <div style={{
+                    position: 'absolute',
+                    top: '8px',
+                    right: '12px',
+                    color: '#FFF1E8',
+                    animation: 'spinSparkle 6s linear infinite',
+                    pointerEvents: 'none'
+                  }}>
+                    <Sparkles size={16} />
+                  </div>
+
                   <Heart size={32} fill="#FFD9C2" />
-                  <span style={{ fontSize: '0.65rem', fontWeight: 800, marginTop: '2px' }}>UNSEAL</span>
-                </motion.div>
+                  <span style={{
+                    fontSize: '0.65rem',
+                    fontWeight: 800,
+                    letterSpacing: '0.08em',
+                    marginTop: '3px',
+                    fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif"
+                  }}>
+                    UNSEAL
+                  </span>
+                </button>
                 <h4 style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(1.2rem, 3vw, 1.4rem)', color: '#8D0B0B', marginBottom: '6px' }}>
-                  Tap the Heart Wax Seal to Open Your Private Anniversary Letter
+                  Tap the Star-Heart Wax Seal to Open Your Private Anniversary Letter
                 </h4>
-                <p style={{ fontSize: '0.82rem', color: '#8D0B0B', opacity: 0.8 }}>
+                <p style={{ fontSize: '0.82rem', color: '#8D0B0B', opacity: 0.8, fontWeight: 600 }}>
                   Protected by Passcode • Tap to enter
                 </p>
               </div>
@@ -1669,8 +1706,9 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                 style={{
                   position: 'fixed',
                   inset: 0,
-                  backgroundColor: 'rgba(0, 0, 0, 0.78)',
-                  backdropFilter: 'blur(10px)',
+                  backgroundColor: 'rgba(10, 2, 2, 0.85)',
+                  backdropFilter: 'blur(6px)',
+                  WebkitBackdropFilter: 'blur(6px)',
                   zIndex: 99999,
                   display: 'flex',
                   alignItems: 'center',
@@ -1870,87 +1908,48 @@ export const AnniversaryLiveExperience = ({ recipientName = "Stacy", onComplete 
                     margin: '0 auto'
                   }}>
                     {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((digit) => (
-                      <motion.button
+                      <button
                         key={digit}
                         type="button"
-                        whileHover={{ scale: 1.06 }}
-                        whileTap={{ scale: 0.94 }}
+                        className="keypad-btn"
                         onClick={() => handleKeypadPress(String(digit))}
-                        style={{
-                          height: '48px',
-                          borderRadius: '12px',
-                          backgroundColor: 'rgba(255, 217, 194, 0.12)',
-                          border: '1.5px solid rgba(255, 217, 194, 0.28)',
-                          color: 'var(--color-ivory)',
-                          fontSize: '1.25rem',
-                          fontWeight: 800,
-                          fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                          cursor: 'pointer',
-                          transition: 'all 0.15s ease'
-                        }}
                       >
                         {digit}
-                      </motion.button>
+                      </button>
                     ))}
-                    <motion.button
+                    <button
                       type="button"
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
+                      className="keypad-btn keypad-btn-special"
                       onClick={handleKeypadClear}
                       style={{
-                        height: '48px',
-                        borderRadius: '12px',
-                        backgroundColor: 'rgba(0, 0, 0, 0.35)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         color: 'var(--color-peach-soft)',
-                        fontSize: '0.78rem',
-                        fontWeight: 800,
-                        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                        cursor: 'pointer'
+                        fontSize: '0.78rem'
                       }}
                     >
                       CLEAR
-                    </motion.button>
-                    <motion.button
+                    </button>
+                    <button
                       type="button"
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
+                      className="keypad-btn"
                       onClick={() => handleKeypadPress("0")}
-                      style={{
-                        height: '48px',
-                        borderRadius: '12px',
-                        backgroundColor: 'rgba(255, 217, 194, 0.12)',
-                        border: '1.5px solid rgba(255, 217, 194, 0.28)',
-                        color: 'var(--color-ivory)',
-                        fontSize: '1.25rem',
-                        fontWeight: 800,
-                        fontFamily: "'Plus Jakarta Sans', system-ui, sans-serif",
-                        cursor: 'pointer'
-                      }}
                     >
                       0
-                    </motion.button>
-                    <motion.button
+                    </button>
+                    <button
                       type="button"
-                      whileHover={{ scale: 1.06 }}
-                      whileTap={{ scale: 0.94 }}
+                      className="keypad-btn keypad-btn-special"
                       onClick={handleKeypadBackspace}
                       title="Backspace"
                       aria-label="Backspace"
                       style={{
-                        height: '48px',
-                        borderRadius: '12px',
-                        backgroundColor: 'rgba(0, 0, 0, 0.35)',
-                        border: '1px solid rgba(255, 255, 255, 0.2)',
                         color: 'var(--color-peach-primary)',
                         display: 'flex',
                         alignItems: 'center',
-                        justifyContent: 'center',
-                        cursor: 'pointer'
+                        justifyContent: 'center'
                       }}
                     >
                       <Delete size={18} />
-                    </motion.button>
+                    </button>
                   </div>
                 </motion.div>
               </motion.div>

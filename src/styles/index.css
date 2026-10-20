@@ -457,6 +457,146 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* ========================================================
+   HIGH-PERFORMANCE LAYER 5 & ANIMATION UTILITIES (60FPS MOBILE & DESKTOP)
+   ======================================================== */
+
+/* Hardware-Accelerated Falling Hearts Shower */
+@keyframes heartFallSmooth {
+  0% {
+    transform: translate3d(0, -50px, 0) scale(0.6) rotate(0deg);
+    opacity: 0;
+  }
+  12% {
+    opacity: 0.95;
+  }
+  85% {
+    opacity: 0.95;
+  }
+  100% {
+    transform: translate3d(var(--drift-x, 0px), 108vh, 0) scale(1) rotate(var(--rot, 20deg));
+    opacity: 0;
+  }
+}
+
+.falling-heart-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99999;
+  overflow: hidden;
+  contain: strict;
+}
+
+.falling-heart-node {
+  position: absolute;
+  top: 0;
+  will-change: transform, opacity;
+  animation-name: heartFallSmooth;
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-fill-mode: forwards;
+}
+
+/* Star Heart Wax Seal Button (Ultra-responsive on Mobile & Laptop) */
+@keyframes sealBreathPulse {
+  0%, 100% {
+    transform: scale(1) translateZ(0);
+    box-shadow: 0 0 20px rgba(141, 11, 11, 0.65), 0 0 0 0 rgba(255, 217, 194, 0.4);
+  }
+  50% {
+    transform: scale(1.06) translateZ(0);
+    box-shadow: 0 0 32px rgba(141, 11, 11, 0.9), 0 0 0 8px rgba(255, 217, 194, 0);
+  }
+}
+
+.wax-seal-button {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #B31414, #8D0B0B 70%, #520606 100%);
+  border: 3px solid #FFD9C2;
+  box-shadow: 0 8px 25px rgba(43, 4, 4, 0.5), 0 0 20px rgba(141, 11, 11, 0.6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  cursor: pointer;
+  color: #FFD9C2;
+  position: relative;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  animation: sealBreathPulse 2.8s ease-in-out infinite;
+  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease;
+  will-change: transform;
+}
+
+.wax-seal-button:hover {
+  transform: scale(1.08) translateZ(0);
+  box-shadow: 0 10px 35px rgba(141, 11, 11, 0.9), 0 0 25px rgba(255, 217, 194, 0.5);
+}
+
+.wax-seal-button:active {
+  transform: scale(0.92) translateZ(0) !important;
+  box-shadow: 0 4px 15px rgba(141, 11, 11, 0.5) !important;
+}
+
+/* GPU-Accelerated Audio Equalizer Bars (Zero layout reflow) */
+@keyframes eqBarPulse {
+  0% {
+    transform: scaleY(0.25);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.eq-bar {
+  width: 4px;
+  height: 28px;
+  background-color: var(--color-peach-primary);
+  border-radius: 2px;
+  transform-origin: bottom;
+  transform: scaleY(0.25);
+  transition: transform 0.25s ease;
+  will-change: transform;
+}
+
+.eq-bar.is-playing {
+  animation: eqBarPulse 0.65s ease-in-out infinite alternate;
+}
+
+/* Tactile Passcode Keypad Buttons */
+.keypad-btn {
+  height: 48px;
+  border-radius: 12px;
+  background-color: rgba(255, 217, 194, 0.12);
+  border: 1.5px solid rgba(255, 217, 194, 0.28);
+  color: var(--color-ivory);
+  font-size: 1.25rem;
+  font-weight: 800;
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: transform 0.1s ease, background-color 0.15s ease;
+  will-change: transform;
+}
+
+.keypad-btn:active {
+  transform: scale(0.92) !important;
+  background-color: rgba(255, 217, 194, 0.28) !important;
+}
+
+.keypad-btn-special {
+  background-color: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
 /* Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
   *, ::before, ::after {
